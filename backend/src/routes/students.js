@@ -41,38 +41,77 @@ router.get('/me', requireAuth, async (req, res, next) => {
   }
 });
 
-router.put('/me', requireAuth, validate(profileSchema), async (req, res, next) => {
-  try {
-    const { id } = req.user;
-    const student = await prisma.student.update({ where: { id }, data: { ...req.body, profileCompleted: true } });
-    res.json({ success: true, student });
-  } catch (error) {
-    next(error);
-  }
-});
-
 router.get('/dashboard', requireAuth, async (req, res, next) => {
   try {
     const student = await prisma.student.findUnique({
       where: { id: req.user.id },
-      include: { admissionForm: true, uploadedDocuments: true, notifications: true, admissionStatus: true }
+      include: {
+        admissionForm: true,
+        uploadedDocuments: true,
+        notifications: true,
+        admissionStatus: true
+      }
     });
-    if (!student) return res.status(404).json({ success: false, error: 'Student not found' });
 
-    const completion = Math.min(100, Math.round((['fullName','emailVerified','dob','gender','mobile','address'].filter(key => student[key]).length / 6) * 100));
+    if (!student) {
+      return res.status(404).json({
+        success: false,
+        error: 'Student not found'
+      });
+    }
+
+    const profilePhoto = student.uploadedDocuments.find(
+      (doc) => doc.documentType === 'photograph'
+    );
+
+    const completion = Math.min(
+      100,
+      Math.round(
+        (
+          [
+            'fullName',
+            'emailVerified',
+            'dob',
+            'gender',
+            'mobile',
+            'address'
+          ].filter((key) => student[key]).length / 6
+        ) * 100
+      )
+    );
+
     res.json({
       success: true,
       data: {
-        applicationStatus: student.admissionStatus?.applicationStatus || 'draft',
-        documentsUploaded: student.uploadedDocuments.length,
-        verificationProgress: student.admissionStatus?.documentStatus || 'pending',
-        notifications: (student.notifications || []).slice(0, 5),
-        profileCompletion: completion
+        fullName: student.fullName,
+        email: student.email,
+
+        course: student.admissionForm?.course || 'N/A',
+        branch: student.admissionForm?.branch || 'N/A',
+
+        profilePhoto: profilePhoto?.filePath || null,
+
+        applicationStatus:
+          student.admissionStatus?.applicationStatus || 'draft',
+
+        documentsUploaded:
+          student.uploadedDocuments.length,
+
+        uploadedDocuments:
+          student.uploadedDocuments,
+
+        verificationProgress:
+          student.admissionStatus?.documentStatus || 'pending',
+
+        notifications:
+          (student.notifications || []).slice(0, 5),
+
+        profileCompletion:
+          completion
       }
     });
   } catch (error) {
     next(error);
   }
 });
-
 module.exports = router;

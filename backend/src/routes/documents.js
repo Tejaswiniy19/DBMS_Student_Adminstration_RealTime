@@ -28,24 +28,58 @@ router.post('/upload', requireAuth, upload.fields([
   { name: 'transferCertificate' },
   { name: 'incomeCertificate' },
   { name: 'casteCertificate' },
-  { name: 'bonafideCertificate' },
+  { name: 'DOBCertificate' },
   { name: 'rankCard' },
-  { name: 'signature' }
+  { name: 'signature' },
+  { name: 'sportsCertificate' },
+  { name: 'academicCertificate' }
 ]), async (req, res, next) => {
-  try {
-    const uploads = Object.entries(req.files).flatMap(([documentType, items]) =>
-      items.map(item => ({ documentType, fileName: item.filename, filePath: `/uploads/${item.filename}` }))
-    );
-    const records = await Promise.all(uploads.map(record => prisma.uploadedDocument.create({ data: { ...record, studentId: req.user.id } })));
-    await prisma.admissionStatus.upsert({
-      where: { studentId: req.user.id },
-      update: { documentStatus: 'uploaded' },
-      create: { studentId: req.user.id, applicationStatus: 'submitted', documentStatus: 'uploaded' }
-    });
-    res.json({ success: true, documents: records });
-  } catch (error) {
-    next(error);
-  }
+ try {
+  console.log("FILES RECEIVED:");
+  console.log(req.files);
+
+  const uploads = Object.entries(req.files).flatMap(
+    ([documentType, items]) =>
+      items.map((item) => ({
+        documentType,
+        fileName: item.filename,
+        filePath: `/uploads/${item.filename}`
+      }))
+  );
+
+  console.log("UPLOADS:");
+  console.log(uploads);
+
+  const records = await Promise.all(
+    uploads.map((record) =>
+      prisma.uploadedDocument.create({
+        data: {
+          ...record,
+          studentId: req.user.id
+        }
+      })
+    )
+  );
+
+  await prisma.admissionStatus.upsert({
+    where: { studentId: req.user.id },
+    update: {
+      documentStatus: 'uploaded'
+    },
+    create: {
+      studentId: req.user.id,
+      applicationStatus: 'submitted',
+      documentStatus: 'uploaded'
+    }
+  });
+
+  res.json({
+    success: true,
+    documents: records
+  });
+} catch (error) {
+  next(error);
+}
 });
 
 router.get('/my-list', requireAuth, async (req, res, next) => {

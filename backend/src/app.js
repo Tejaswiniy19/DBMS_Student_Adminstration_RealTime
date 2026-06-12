@@ -23,7 +23,11 @@ if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
 
-app.use(helmet());
+app.use(
+  helmet({
+    crossOriginResourcePolicy: false
+  })
+);
 app.use(morgan('tiny'));
 app.use(express.json({ limit: '15mb' }));
 app.use(express.urlencoded({ extended: true, limit: '15mb' }));
@@ -39,8 +43,14 @@ const limiter = rateLimit({
 });
 
 app.use(limiter);
-app.use('/uploads', express.static(uploadDir));
-app.use('/api/auth', authRoutes);
+app.use(
+  '/uploads',
+  express.static(uploadDir, {
+    setHeaders: (res) => {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+    }
+  })
+);app.use('/api/auth', authRoutes);
 app.use('/api/students', studentRoutes);
 app.use('/api/admissions', admissionRoutes);
 app.use('/api/documents', documentRoutes);
