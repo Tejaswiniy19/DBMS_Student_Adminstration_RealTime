@@ -21,11 +21,29 @@ export default function StudentDashboard() {
       {/* Student Profile Card */}
       <div className="card-glass p-6 rounded-3xl border-slate-200/70 dark:border-slate-700/70">
         <div className="flex flex-col md:flex-row items-center gap-6">
-          <img
-            src="http://localhost:4000/uploads/1780921540143-2.jpg"
-            alt="Profile"
-            className="w-32 h-32 rounded-full border-4 border-red-500"
-         />
+          <div style={{ width: "150px", height: "150px" }}>
+  <img
+    src={
+      stats?.profilePhoto
+        ? `http://localhost:4000${stats.profilePhoto}`
+        : "https://via.placeholder.com/150"
+    }
+    alt="Student Profile"
+    style={{
+      width: "150px",
+      height: "150px",
+      objectFit: "cover",
+      border: "5px solid #2563eb",
+      borderRadius: "50%"
+    }}
+    onLoad={() => console.log("IMAGE LOADED")}
+    onError={(e) => {
+      console.log("IMAGE ERROR");
+      console.log(stats?.profilePhoto);
+      console.log(e);
+    }}
+  />
+</div>
 
           <div className="flex-1">
             <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
