@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import api from '../../api/api';
 import { CheckCircle2, FileText, Shield, Bell } from 'lucide-react';
 import DigiLockerSection from '../../components/DigiLockerSection';
+import AdmissionLetterButton from '../../components/AdmissionLetterButton';
 
 export default function StudentDashboard() {
   const [stats, setStats] = useState(null);
@@ -74,8 +75,15 @@ export default function StudentDashboard() {
                   Application Status
                 </p>
                 <p className="font-semibold text-green-600">
-                  {stats?.applicationStatus || 'Draft'}
-                </p>
+    {stats?.applicationStatus || "Draft"}
+  </p>
+
+
+{stats?.applicationStatus?.toLowerCase() === "approved" && (
+  <div className="mt-2">
+    <AdmissionLetterButton student={stats} />
+  </div>
+)}
               </div>
 
               <div>
@@ -92,53 +100,53 @@ export default function StudentDashboard() {
       </div>
 
       {/* Dashboard Cards */}
-      <section className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-        {[
-          {
-            title: 'Application Status',
-            value: stats?.applicationStatus || 'Draft',
-            icon: FileText,
-            tint: 'from-brand-500 to-sky-400'
-          },
-          {
-            title: 'Documents Uploaded',
-            value: stats?.documentsUploaded || 0,
-            icon: CheckCircle2,
-            tint: 'from-emerald-500 to-emerald-400'
-          },
-          {
-            title: 'Verification Progress',
-            value: stats?.verificationProgress || 'Pending',
-            icon: Shield,
-            tint: 'from-violet-500 to-fuchsia-500'
-          },
-          {
-            title: 'Notifications',
-            value: stats?.notifications?.length || 0,
-            icon: Bell,
-            tint: 'from-slate-600 to-slate-400'
-          }
-        ].map((card) => (
-          <div
-            key={card.title}
-            className="card-glass p-6 rounded-3xl shadow-xl border-slate-200/70 dark:border-slate-700/70"
-          >
-            <div
-              className={`inline-flex items-center justify-center rounded-2xl bg-gradient-to-br ${card.tint} p-3 text-white`}
-            >
-              <card.icon size={20} />
-            </div>
+    <section className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+  {[
+    {
+      title: 'Application Status',
+      value: stats?.applicationStatus || 'Draft',
+      icon: FileText,
+      tint: 'from-brand-500 to-sky-400'
+    },
+    {
+      title: 'Documents Uploaded',
+      value: stats?.documentsUploaded || 0,
+      icon: CheckCircle2,
+      tint: 'from-emerald-500 to-emerald-400'
+    },
+    {
+      title: 'Verification Progress',
+      value: stats?.verificationProgress || 'Pending',
+      icon: Shield,
+      tint: 'from-violet-500 to-fuchsia-500'
+    },
+    {
+      title: 'Notifications',
+      value: stats?.notifications?.length || 0,
+      icon: Bell,
+      tint: 'from-slate-600 to-slate-400'
+    }
+  ].map((card) => (
+    <div
+      key={card.title}
+      className="card-glass p-6 rounded-3xl shadow-xl border-slate-200/70 dark:border-slate-700/70"
+    >
+      <div
+        className={`inline-flex items-center justify-center rounded-2xl bg-gradient-to-br ${card.tint} p-3 text-white`}
+      >
+        <card.icon size={20} />
+      </div>
 
-            <h3 className="mt-6 text-sm uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
-              {card.title}
-            </h3>
+      <h3 className="mt-6 text-sm uppercase tracking-[0.2em] text-slate-500">
+        {card.title}
+      </h3>
 
-            <p className="mt-3 text-3xl font-semibold text-slate-900 dark:text-slate-100">
-              {card.value}
-            </p>
-          </div>
-        ))}
-      </section>
+      <p className="mt-3 text-3xl font-semibold">
+        {card.value}
+      </p>
+    </div>
+  ))}
+</section>
 
       {/* Progress + Profile Completion */}
       <section className="grid gap-6 xl:grid-cols-[1.4fr_0.8fr]">

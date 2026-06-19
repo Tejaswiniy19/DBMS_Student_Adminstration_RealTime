@@ -40,8 +40,19 @@ export default function AdminDashboard() {
     });
 }, []);
 
-  return (
-    <div className="space-y-6">
+return (
+  <div className="space-y-6">
+
+    <div className="flex justify-end">
+      <a
+        href="http://localhost:4000/api/reports/students-csv"
+        target="_blank"
+        rel="noreferrer"
+        className="bg-blue-600 text-white px-4 py-2 rounded-lg"
+      >
+        Download Student Report CSV
+      </a>
+    </div>
       <section className="grid gap-6 sm:grid-cols-2 xl:grid-cols-5">
         {[
           { label: 'Total Students', value: summary?.summary.totalStudents || 0 },
