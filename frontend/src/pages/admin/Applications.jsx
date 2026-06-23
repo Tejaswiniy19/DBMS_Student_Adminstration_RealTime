@@ -539,7 +539,7 @@ export default function ApplicationsPage() {
                       <div key={doc.id} className="flex items-center justify-between p-2 rounded-xl bg-slate-50 dark:bg-slate-900/60">
                         <span className="font-medium text-slate-700 dark:text-slate-300">{doc.documentType}</span>
                         <a 
-                          href={`http://localhost:4000/${doc.filePath}`}
+                          href={`http://localhost:5000/${doc.filePath}`}
                           target="_blank" 
                           rel="noreferrer"
                           className="font-semibold text-brand-600 hover:text-brand-700"

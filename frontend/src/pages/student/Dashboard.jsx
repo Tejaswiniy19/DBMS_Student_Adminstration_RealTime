@@ -99,7 +99,7 @@ export default function StudentDashboard() {
   <img
     src={
       stats?.profilePhoto
-        ? `http://localhost:4000${stats.profilePhoto}`
+        ? `http://localhost:5000${stats.profilePhoto}`
         : "https://via.placeholder.com/150"
     }
     alt="Student Profile"

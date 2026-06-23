@@ -10,6 +10,7 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import ApplicationsPage from './pages/admin/Applications';
 import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
+import Notifications from "./pages/student/notifications";
 
 function App() {
   const { user, loading } = useAuth();
@@ -31,8 +32,10 @@ function App() {
         <Route path="/student/documents" element={<ProtectedRoute role="student"><Layout><DocumentCenter /></Layout></ProtectedRoute>} />
         <Route path="/admin/dashboard" element={<ProtectedRoute role="admin"><Layout><AdminDashboard /></Layout></ProtectedRoute>} />
         <Route path="/admin/applications" element={<ProtectedRoute role="admin"><Layout><ApplicationsPage /></Layout></ProtectedRoute>} />
+        <Route path="/student/notifications" element={<ProtectedRoute role="student"><Layout><Notifications /></Layout></ProtectedRoute>} />
         <Route path="*" element={<div className="flex min-h-screen items-center justify-center">Page not found</div>} />
       </Routes>
+      
     </div>
   );
 }

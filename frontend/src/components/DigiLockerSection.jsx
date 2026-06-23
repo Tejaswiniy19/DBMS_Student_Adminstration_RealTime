@@ -34,11 +34,10 @@ export default function DigiLockerSection({
               <div className="flex justify-between items-start">
                 <FileText size={24} />
 
-                {doc.verified ? (
-                  <CheckCircle className="text-green-500" />
-                ) : (
-                  <Clock className="text-yellow-500" />
-                )}
+               {doc.verificationStatus === "approved" ? (
+                  <CheckCircle className="text-green-500" />):(
+                   <Clock className="text-yellow-500" />)} 
+              
               </div>
 
               <h3 className="mt-4 font-semibold text-lg">
@@ -55,20 +54,20 @@ export default function DigiLockerSection({
               <p className="mt-2 text-sm">
                 Status:
                 <span
-                  className={`ml-2 font-medium ${
-                    doc.verified
-                      ? "text-green-600"
-                      : "text-yellow-600"
-                  }`}
-                >
-                  {doc.verified
-                    ? "Verified"
-                    : "Pending"}
-                </span>
+  className={`ml-2 font-medium ${
+    doc.verificationStatus === "approved"
+      ? "text-green-600"
+      : doc.verificationStatus === "rejected"
+      ? "text-red-600"
+      : "text-yellow-600"
+  }`}
+>
+  {doc.verificationStatus}
+</span>
               </p>
 
               <a
-                href={`http://localhost:4000${doc.filePath}`}
+                href={`http://localhost:5000${doc.filePath}`}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-4 inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-white"
