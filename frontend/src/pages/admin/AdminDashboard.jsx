@@ -128,29 +128,32 @@ icon:<FaTimesCircle className="text-red-500 text-3xl"/>,
 ].map(item=>(
 
 <div key={item.label} className="
-bg-white/90 
-backdrop-blur-xl
-rounded-3xl
-p-6
-shadow-xl
-border
-border-white/40
-hover:shadow-2xl
-hover:-translate-y-1
-transition-all
-duration-300">
+bg-white/90
+    dark:bg-slate-900/90
+    backdrop-blur-xl
+    rounded-3xl
+    p-6
+    shadow-xl
+    border
+    border-white/40
+    dark:border-slate-700
+    hover:shadow-2xl
+    hover:-translate-y-1
+    transition-all
+    duration-300
+">
 
  <div className="flex justify-between items-center">
 
 <div>
 
-<p className="text-sm uppercase tracking-widest text-gray-500">
+<p className="text-sm uppercase tracking-widest text-slate-600 dark:text-slate-300 ">
 
 {item.label}
 
 </p>
 
-<p className="text-4xl font-bold mt-4">
+<p className="text-4xl font-bold mt-4 text-slate-600 dark:text-white">
 
 {item.value}
 
@@ -169,8 +172,16 @@ duration-300">
         ))}
       </section>
       <section className="grid gap-6 lg:grid-cols-[1.4fr_0.8fr]">
-        <div className="bg-white/75 backdrop-blur-md rounded-3xl p-6 shadow-xl border border-white/40">
-          <h2 className="text-xl font-semibold">Admissions by Branch</h2>
+        <div className="bg-white/75
+dark:bg-slate-900/85
+backdrop-blur-md
+rounded-3xl
+p-6
+shadow-xl
+border
+border-white/40
+dark:border-slate-700">
+          <h2 className="text-xl font-semibold text-slate-900 dark:text-white">Admissions by Branch</h2>
           <div className="mt-6 h-72">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={summary?.charts.branchDistribution || []}>
@@ -199,12 +210,14 @@ duration-300">
             </div>
           </div>
           <div className="bg-white/75
+          dark:bg-slate-900/85
     backdrop-blur-md
     rounded-3xl
     p-6
     shadow-xl
     border
-    border-white/40">
+    border-white/40
+    dark:border-slate-700">
             <h2 className="text-xl font-semibold">Category Distribution</h2>
             <div className="mt-6 h-72">
               <ResponsiveContainer width="100%" height="100%">
@@ -233,12 +246,13 @@ duration-300">
   </h2>
 </div>
 
-<table className="w-full overflow-hidden rounded-2xl bg-white/80 backdrop-blur-md">
+<table className="w-full overflow-hidden rounded-2xl bg-white/80 dark:bg-slate-900/90 backdrop-blur-md border border-slate-200
+dark:border-slate-700 shadow-xl">
 
   <thead>
-    <tr className="border-b">
-      <th className="text-left p-4">Student</th>
-      <th className="text-center p-4">Certificate</th>
+    <tr className="border-b border-slate-200 dark:border-slate-700">
+      <th className="text-left p-4 text-slate-900 dark:text-white">Student</th>
+      <th className="text-center p-4 text-slate-900 dark:text-white">Certificate</th>
     </tr>
   </thead>
 
@@ -265,11 +279,11 @@ duration-300">
 
               <div>
 
-                <p className="font-semibold">
+                <p className="font-semibold text-slate-900 dark:text-white">
                   {doc.student?.fullName}
                 </p>
 
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-gray-500 dark:text-slate-400">
                   {doc.student?.email}
                 </p>
 
@@ -304,7 +318,10 @@ duration-300">
 
         <td
           colSpan="2"
-          className="text-center py-8 text-gray-500"
+          className="text-center py-8 text-slate-600
+dark:text-slate-300
+bg-white/40
+dark:bg-slate-900/40"
         >
           No Academic Certificates Uploaded
         </td>
@@ -325,11 +342,14 @@ duration-300">
   </h2>
 </div>
 
-<table className="w-full overflow-hidden rounded-2xl bg-white/80 backdrop-blur-md">
+<table className="w-full overflow-hidden rounded-2xl bg-white/80 dark:bg-slate-900/90 backdrop-blur-md border
+border-slate-200
+dark:border-slate-700
+shadow-xl">
 
   <thead>
     <tr className="border-b">
-      <th className="text-left p-4">Student</th>
+      <th className="text-left p-4 text-slate-900 dark:text-white">Student</th>
       <th className="text-center p-4">Certificate</th>
     </tr>
   </thead>
@@ -396,7 +416,10 @@ duration-300">
 
         <td
           colSpan="2"
-          className="text-center py-8 text-gray-500"
+          className="text-center py-8 text-slate-600
+dark:text-slate-300
+bg-white/40
+dark:bg-slate-900/40"
         >
           No Sports Certificates Uploaded
         </td>

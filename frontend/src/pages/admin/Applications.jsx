@@ -198,18 +198,28 @@ export default function ApplicationsPage() {
   };
   return (
     <div
-  className="min-h-screen bg-cover bg-center bg-no-repeat"
-  style={{
-    backgroundImage:
-      "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR93UVLl0SKUJ7MXGXTVTQFJEgq6VXZofQIOw&s')"
-  }}
+className="
+min-h-screen
+bg-gradient-to-br
+from-purple-50
+via-pink-50
+to-cyan-100
+p-6
+"
 >
     <div className="space-y-6">
       {/* Header and Controls */}
-      <div className="card-glass p-6 rounded-3xl border-slate-200/70 dark:border-slate-700/70">
+      <div className="p-6
+rounded-3xl
+bg-gradient-to-r
+from-indigo-50
+via-violet-50
+to-purple-100
+border border-indigo-100
+shadow-2xl">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
-            <h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100">Application Management</h2>
+            <h2 className="text-2xl font-semibold ">Application Management</h2>
             <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Search, filter, and process SAMS admission requests.</p>
           </div>
           <button 
@@ -220,7 +230,22 @@ export default function ApplicationsPage() {
           </button>
         </div>
         {/* Filters */}
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-6
+grid
+gap-4
+sm:grid-cols-2
+lg:grid-cols-4
+bg-gradient-to-r
+from-blue-50
+via-cyan-50
+to-indigo-50
+dark:bg-slate-800
+rounded-3xl
+p-6
+border
+border-cyan-100
+dark:border-slate-700
+shadow-md">
           <div className="flex items-center gap-2.5 rounded-3xl border border-slate-200 bg-white px-4 py-2.5 shadow-sm focus-within:border-brand-500 dark:border-slate-700 dark:bg-slate-900">
             <Search size={16} className="text-slate-400" />
             <input 
@@ -284,7 +309,15 @@ export default function ApplicationsPage() {
         </div>
       </div>
       {/* Applications Table */}
-      <div className="card-glass overflow-hidden rounded-3xl border-slate-200/70 dark:border-slate-700/70">
+      <div className="overflow-hidden
+rounded-3xl
+bg-white/90
+dark:bg-slate-900/85
+backdrop-blur-xl
+border
+border-slate-200
+dark:border-slate-700
+shadow-xl">
         <div className="overflow-x-auto">
           {loading ? (
             <div className="flex h-64 flex-col items-center justify-center gap-3">
@@ -299,7 +332,15 @@ export default function ApplicationsPage() {
             </div>
           ) : (
             <table className="min-w-full divide-y divide-slate-200 text-left text-sm dark:divide-slate-700">
-              <thead className="bg-slate-100/70 text-slate-600 dark:bg-slate-900/70 dark:text-slate-400">
+              <thead className="bg-gradient-to-r
+from-blue-100
+via-indigo-100
+to-purple-100
+
+text-slate-800
+
+uppercase
+tracking-wide">
                 <tr>
                   <th className="px-6 py-4 font-semibold">Student</th>
                   <th className="px-6 py-4 font-semibold">Course & Branch</th>

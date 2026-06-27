@@ -54,17 +54,10 @@ const fadeUp = {
 
 return (
   <div
-  className="min-h-screen bg-cover bg-center"
+  className="min-h-screen p-6"
   style={{
-    backgroundImage: `
-    linear-gradient(
-    rgba(59,130,246,0.15),
-    rgba(14,165,233,0.15)
-  ),
-      url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR93UVLl0SKUJ7MXGXTVTQFJEgq6VXZofQIOw&s')
-    `,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center'
+    background:
+      "linear-gradient(135deg, #f0f9ff 0%, #dbeafe 40%, #bfdbfe 100%)"
   }}
 >
     {/* Header */}
@@ -113,59 +106,80 @@ return (
       </div>
     </div>
 
-    {/* Statistics */}
-    <div className="max-w-6xl mx-auto px-6 mt-10">
-      <div className="grid md:grid-cols-4 gap-5">
+{/* Statistics */}
+<div className="max-w-6xl mx-auto px-6 mt-10">
+  <div className="grid md:grid-cols-4 gap-5">
 
-        <motion.div
-  variants={fadeUp}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true }}
-  whileHover={{
-    y: -10,
-    scale: 1.05
-  }}
-  className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl text-center"
->
-          <h2 className="text-4xl font-bold text-sky-600">
-            5000+
-          </h2>
-          <p className="text-slate-600 mt-2">
-            Students
-          </p>
-        </motion.div>
+    {/* Students */}
+    <motion.div
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      whileHover={{ y: -10, scale: 1.05 }}
+      className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl text-center"
+    >
+      <h2 className="text-4xl font-bold text-sky-600">
+        5000+
+      </h2>
+      <p className="text-slate-600 mt-2">
+        Students
+      </p>
+    </motion.div>
 
-        <div className="bg-white rounded-2xl p-6 shadow-lg text-center">
-          <h2 className="text-4xl font-bold text-green-600">
-            10
-          </h2>
-          <p className="text-slate-600 mt-2">
-            Courses
-          </p>
-        </div>
+    {/* Courses */}
+    <motion.div
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      whileHover={{ y: -10, scale: 1.05 }}
+      className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl text-center"
+    >
+      <h2 className="text-4xl font-bold text-green-600">
+        10
+      </h2>
+      <p className="text-slate-600 mt-2">
+        Courses
+      </p>
+    </motion.div>
 
-        <div className="bg-white rounded-2xl p-6 shadow-lg text-center">
-          <h2 className="text-4xl font-bold text-purple-600">
-            88%
-          </h2>
-          <p className="text-slate-600 mt-2">
-            Placement Rate
-          </p>
-        </div>
+    {/* Placement */}
+    <motion.div
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      whileHover={{ y: -10, scale: 1.05 }}
+      className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl text-center"
+    >
+      <h2 className="text-4xl font-bold text-purple-600">
+        88%
+      </h2>
+      <p className="text-slate-600 mt-2">
+        Placement Rate
+      </p>
+    </motion.div>
 
-        <div className="bg-white rounded-2xl p-6 shadow-lg text-center">
-          <h2 className="text-4xl font-bold text-orange-500">
-            24/7
-          </h2>
-          <p className="text-slate-600 mt-2">
-            Support
-          </p>
-        </div>
+    {/* Support */}
+    <motion.div
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      whileHover={{ y: -10, scale: 1.05 }}
+      className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl text-center"
+    >
+      <h2 className="text-4xl font-bold text-orange-500">
+        24/7
+      </h2>
+      <p className="text-slate-600 mt-2">
+        Support
+      </p>
+    </motion.div>
 
-      </div>
-    </div>
-
+  </div>
+</div>
     {/* Login Card */}
     <div className="max-w-lg mx-auto mt-12 px-6">
 

@@ -35,27 +35,96 @@ export default function AdmissionWizard() {
 
   return (
     <div
-  className="min-h-screen p-8 bg-cover bg-center bg-fixed"
+  className="min-h-screen
+p-8
+bg-cover
+bg-center
+bg-fixed
+dark:bg-slate-950
+transition-all
+duration-500"
   style={{
     backgroundImage:
       "linear-gradient(rgba(240,248,255,0.92), rgba(240,248,255,0.92)), url('https://jntugv.edu.in/static/media/JNTU_PIC.ae61eebb7dc963f0dd30.png')"
   }}
 >
-      <div className="fade-up bg-white/90 backdrop-blur-xl p-10 rounded-3xl shadow-2xl border border-sky-100">
-        <h2 className="text-4xl font-bold text-sky-700">Admission </h2>
-        <p className="mt-3 text-slate-600 text-lg dark:text-slate-400">Complete the multi-step form to submit your admission application.</p>
+      <div className="fade-up
+bg-gradient-to-r
+from-sky-50
+to-blue-50
+dark:from-slate-900
+dark:to-slate-800
+backdrop-blur-xl
+p-10
+rounded-3xl
+shadow-2xl
+border
+border-sky-100
+dark:border-slate-700">
+        <h2 className="text-4xl font-bold text-sky-700 dark:text-sky-300">Admission </h2>
+        <p className="mt-3 text-lg text-slate-600  dark:text-slate-300">Complete the multi-step form to submit your admission application.</p>
         <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {steps.map((step, idx) => (
-            <div key={step} className={`float-card rounded-3xl p-6 text-center shadow-lg transition-all duration-300 hover:scale-105${idx === currentStep ? 'border-brand-500 bg-brand-50 text-brand-700' : 'border-slate-200 bg-white text-slate-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300'}`}>
-              <div className="text-sm uppercase tracking-[0.2em]">Step {idx + 1}</div>
-              <div className="mt-2 text-base font-semibold">{step}</div>
-            </div>
-          ))}
-        </div>
+
+{steps.map((step, idx) => (
+
+<div
+key={step}
+
+className={`rounded-3xl
+p-6
+text-center
+border
+shadow-lg
+transition-all
+duration-300
+hover:scale-105
+
+${
+idx===currentStep
+
+? 'border-sky-400 bg-sky-100 text-sky-800 dark:border-sky-400 dark:bg-sky-900/30 dark:text-sky-300'
+
+: 'border-slate-200 bg-white text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300'
+}`}
+
+>
+
+<div className="text-sm uppercase tracking-[0.2em]">
+
+Step {idx+1}
+
+</div>
+
+<div className="mt-2 text-lg font-semibold">
+
+{step}
+
+</div>
+
+</div>
+
+))}
+
+</div>
       </div>
 
       {currentStep === 0 && (
-        <div className="grid gap-6 md:grid-cols-2">
+          <div className="mt-8
+rounded-3xl
+bg-gradient-to-br
+from-cyan-50
+via-sky-50
+to-blue-100
+dark:from-slate-900
+dark:via-slate-850
+dark:to-slate-800
+backdrop-blur-xl
+p-8
+shadow-2xl
+border
+border-sky-100
+dark:border-slate-700">
+   <div className="grid gap-6 md:grid-cols-2">
           {[
             { label: 'Secondary School', key: 'secondarySchool' },
             { label: 'Board', key: 'secondaryBoard' },
@@ -71,7 +140,7 @@ export default function AdmissionWizard() {
             { label: 'Year', key: 'examYear', type: 'number' }
           ].map((item) => (
             <label key={item.key} className="block">
-              <span className="text-slate-700 dark:text-slate-200">{item.label}</span>
+              <span className="font-semibold text-slate-800 dark:text-slate-100">{item.label}</span>
               <input type={item.type || 'text'} value={academic[item.key]} onChange={(e) => setAcademic({ ...academic, [item.key]: e.target.value })} className="mt-2 w-full rounded-3xl border border-slate-200 bg-white px-4 py-3 outline-none shadow-sm transition focus:border-brand-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100" />
             </label>
           ))}
@@ -79,6 +148,7 @@ export default function AdmissionWizard() {
             <button onClick={nextStep} className="w-full rounded-xl border border-slate-300 px-5 py-3 text-slate-700 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800">Skip</button>
             <button onClick={handleAcademicSave} className="w-full rounded-3xl bg-brand-600 px-5 py-3 text-white transition hover:bg-brand-700">Save and continue</button>
           </div>
+        </div>
         </div>
       )}
 
@@ -91,7 +161,7 @@ export default function AdmissionWizard() {
             { label: 'Previous Institution', key: 'previousInstitution' }
           ].map((item) => (
             <label key={item.key} className="block">
-              <span className="text-slate-700 dark:text-slate-200">{item.label}</span>
+              <span className=" font medium text-slate-800 dark:text-slate-100">{item.label}</span>
               <input type="text" value={admission[item.key]} onChange={(e) => setAdmission({ ...admission, [item.key]: e.target.value })} className="mt-2 w-full rounded-3xl border border-slate-200 bg-white px-4 py-3 outline-none shadow-sm transition focus:border-brand-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100" />
             </label>
           ))}
@@ -110,7 +180,24 @@ export default function AdmissionWizard() {
             </label>
           </div>
           <div className="md:col-span-2 flex justify-between gap-4">
-            <button onClick={prevStep} className="w-full rounded-3xl border border-slate-300 px-5 py-3 text-slate-700 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800">Back</button>
+            <button onClick={prevStep} className="w-full
+    rounded-3xl
+    border
+    border-slate-300
+    bg-slate-100
+    px-5
+    py-3
+    font-semibold
+    text-slate-800
+    shadow-md
+    transition-all
+    duration-300
+    hover:bg-slate-200
+
+    dark:border-slate-600
+    dark:bg-slate-700
+    dark:text-white
+    dark:hover:bg-slate-600">Back</button>
             <button onClick={handleAdmissionSave} className="w-full rounded-3xl bg-brand-600 px-5 py-3 text-white transition hover:bg-brand-700">Save draft</button>
           </div>
         </div>
@@ -131,7 +218,24 @@ export default function AdmissionWizard() {
             ))}
           </div>
           <div className="flex flex-col gap-4 md:flex-row">
-            <button onClick={prevStep} className="w-full rounded-3xl border border-slate-300 px-5 py-3 text-slate-700 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800">Back</button>
+            <button onClick={prevStep} className="w-full
+    rounded-3xl
+    border
+    border-slate-300
+    bg-slate-100
+    px-5
+    py-3
+    font-semibold
+    text-slate-800
+    shadow-md
+    transition-all
+    duration-300
+    hover:bg-slate-200
+
+    dark:border-slate-600
+    dark:bg-slate-700
+    dark:text-white
+    dark:hover:bg-slate-600">Back</button>
             <button onClick={handleSubmit} className="w-full rounded-3xl bg-brand-600 px-5 py-3 text-white transition hover:bg-brand-700">Submit application</button>
           </div>
         </div>

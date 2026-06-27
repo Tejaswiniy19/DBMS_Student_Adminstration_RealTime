@@ -35,6 +35,16 @@ export default function Register() {
   };
 
   return (
+    <div
+className="
+min-h-screen
+bg-gradient-to-br
+from-purple-50
+via-pink-50
+to-cyan-100
+p-6
+"
+>
     <div className="flex min-h-screen items-center justify-center px-4 py-10">
       <div className="w-full max-w-xl card-glass p-8 rounded-3xl shadow-xl">
         <div className="mb-6">
@@ -110,6 +120,7 @@ export default function Register() {
 
         <p className="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">Already a member? <Link to="/login" className="font-semibold text-brand-600 hover:text-brand-700">Sign in</Link></p>
       </div>
+    </div>
     </div>
   );
 }
